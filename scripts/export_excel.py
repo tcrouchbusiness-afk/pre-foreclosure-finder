@@ -110,10 +110,16 @@ def load_skiptrace():
                 if not lid:
                     continue
                 if "phones" in r:  # our normalized format (scripts convert provider exports to this)
-                    res[lid] = {k: v for k, v in r.items() if k != "lead_id" and v}
-                    for k in ("skip_mortgage", "skip_est_value"):
-                        if res[lid].get(k):
-                            res[lid][k] = float(res[lid][k])
+                    cur = res.setdefault(lid, {})
+                    for k, v in r.items():
+                        if k == "lead_id" or not v:
+                            continue
+                        if k in ("skip_mortgage", "skip_est_value"):
+                            cur[k] = float(v)
+                        elif k in ("phones", "emails", "skip_note") and cur.get(k) and v not in cur[k]:
+                            cur[k] += ("\n" if k == "skip_note" else " / ") + v  # several heirs on one lead
+                        else:
+                            cur[k] = v
                     continue
                 phones = [v for k, v in r.items() if k and re.search(r"phone", k, re.I) and v and re.search(r"\d{7}", v)]
                 emails = [v for k, v in r.items() if k and re.search(r"email", k, re.I) and v and "@" in v]

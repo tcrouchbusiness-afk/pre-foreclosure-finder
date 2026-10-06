@@ -97,7 +97,7 @@ Then show them a short summary and get a yes before the first pull.
 | 5 | **Build workbook** | `python scripts/export_excel.py` | `output/foreclosure_leads_<date>.xlsx` |
 | 6 | **Court files** for the top leads (score ≥ 50 first) | User solves CAPTCHA; you search each case number with the site's form, run `browser/save_case_page.js` on each case page, then `browser/export_saved.js`. Move to `data/ccis/`. `python scripts/parse_ccis.py` | `data/ccis_parsed.json` (stage, debt band, contested, dismissed, trial) |
 | 7 | **Estates (tier A)**: find who can sell | Name-search the deceased owner's last name; open the case ending in `CP` (probate). Record personal rep, estate attorney, homestead determination, deadlines in `data/estate_research.json` (template: `data/estate_research.example.json`). No probate case = heirs from the foreclosure defendants | `data/estate_research.json` |
-| 8 | **Skip trace** | `python scripts/build_skiptrace.py --tiers B1,B2,C --name skiptrace1` (+ `--tiers A` for estate people in `trace`). User uploads to the provider, downloads results into `output/`. `python scripts/import_skiptrace.py output/<results>.csv --upload output/skiptrace1.csv` | `data/skiptrace/*.csv` |
+| 8 | **Skip trace** | `python scripts/build_skiptrace.py --tiers B1,B2,C --name skiptrace1` (+ `--tiers A` for estate people in `trace`, each with a street address). User uploads to the provider, downloads results into `output/`. `python scripts/import_skiptrace.py output/<results>.csv --upload output/skiptrace1.csv` | `data/skiptrace/*.csv` |
 | 9 | **Rebuild** | `python scripts/export_excel.py` | workbook with phones, estates, court stage |
 
 Re-running any step is safe; leads de-dupe on the clerk file number.
@@ -129,6 +129,10 @@ Re-running any step is safe; leads de-dupe on the clerk file number.
 - **Skip-tracing a dead owner returns the dead owner's old numbers.** For estates, trace the personal
   rep / heirs by name + city, and start with the estate attorney (public on the state bar site).
 - **Condos need the unit in its own column** or the provider matches another unit's owner.
+- **Skip tracing needs a street address.** REISkip (2026-10) matched 0 of 5 estate people sent as name + city
+  only, versus 16/20 HOA-lien owners and 11/16 owner-occupants sent with property + mailing address. For
+  executors/heirs, get their home address from the probate petition or affidavit of heirs first, or start
+  with the estate attorney (state bar directory).
 - **A filed case may already be dismissed.** Only the court file tells you; unread leads are unverified.
 - Tool output gets truncated; save extracted data to a file through the browser instead of printing it.
 

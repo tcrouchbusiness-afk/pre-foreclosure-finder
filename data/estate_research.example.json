@@ -7,7 +7,7 @@
   "estate_attorney": "John Example",
   "notes": "What the probate docket shows: homestead determination, deadline to close, creditor claims.",
   "trace": [
-   {"first": "Jane Q", "last": "Example", "city": "Stuart", "who": "Personal rep"}
+   {"first": "Jane Q", "last": "Example", "street": "123 SE Example St", "city": "Stuart", "zip": "34994", "who": "Personal rep (address from probate petition)"}
   ]
  }
 }
