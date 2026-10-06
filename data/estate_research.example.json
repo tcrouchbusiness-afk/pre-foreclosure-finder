@@ -1,0 +1,13 @@
+{
+ "_about": "Copy to data/estate_research.json. One entry per tier-A estate lead, keyed by case number as it appears in the workbook. Filled by hand (with Claude) from probate searches. export_excel.py shows ask_for/attorney/notes on the Call List; build_skiptrace.py traces the people in 'trace'.",
+ "26 123 CA": {
+  "lead_id": "3190000",
+  "probate_case": "26000456CPAXMX (open, filed 2026-03-01, formal administration)",
+  "ask_for": "Jane Q Example (personal rep, appointed 2026-04-01)",
+  "estate_attorney": "John Example",
+  "notes": "What the probate docket shows: homestead determination, deadline to close, creditor claims.",
+  "trace": [
+   {"first": "Jane Q", "last": "Example", "city": "Stuart", "who": "Personal rep"}
+  ]
+ }
+}

@@ -1,0 +1,48 @@
+{
+  "_about": "One file per county. Copy this, change the values, and point COUNTY_CONFIG at it (default: config/county.json). Verified for Martin County, FL on 2026-10-05.",
+  "county": "Martin",
+  "state": "FL",
+  "area_label": "Stuart / Palm City / Jensen Beach / Hobe Sound / Indiantown",
+  "default_city": "Stuart",
+
+  "official_records": {
+    "system": "Landmark Web",
+    "url": "https://or.martinclerk.com/landmarkweb/",
+    "lis_pendens_doc_code": "LP",
+    "notes": "Accept the disclaimer, Document Type Search, type LP, 'Last 90 Days', 2000 records, Submit, page size All. Index lags about 1 week (see 'verified through' on the page)."
+  },
+  "court_dockets": {
+    "system": "Benchmark CCIS",
+    "url": "https://court.martinclerk.com/Home.aspx/Search",
+    "case_number_format": "{yy}{seq:06d}{type}AXMX",
+    "notes": "Math CAPTCHA. A human solves it; Claude never does. Roughly one CAPTCHA every 4 searches."
+  },
+  "foreclosure_auctions": "https://martin.realforeclose.com",
+
+  "property_appraiser": {
+    "name": "Martin County Property Appraiser",
+    "downloads_page": "https://www.pamartinfl.gov/tools-resources/data-downloads",
+    "download_url": "https://www.pamartinfl.gov/tools-resources/data-downloads/{id}/download",
+    "datasets": {
+      "master": "46-real-master",
+      "owners": "1169-real-owners",
+      "legal": "37-full-legal",
+      "exemptions": "1166-real-exemptions",
+      "transfers": "39-real-transfers",
+      "values": "48-current-value-summary-fka-ucav"
+    },
+    "homestead_exemption_code": "01",
+    "value_year": "2025",
+    "notes": "Free. Pipe-delimited CSVs inside zips. The master file's value columns can be zero between rolls, so values come from the value-summary xlsx."
+  },
+
+  "legal_stopwords_extra": ["MARTIN", "FLORIDA"],
+  "government_parties_extra": ["MARTIN COUNTY", "CLERK CIRCUIT COURT", "VILLAGE OF"],
+
+  "skip_trace": {
+    "provider": "REISkip",
+    "price_per_record_usd": 0.15,
+    "checked": "2026-10-05",
+    "notes": "No public API docs; use the web app's CSV upload. Results come back as ContactList.csv."
+  }
+}

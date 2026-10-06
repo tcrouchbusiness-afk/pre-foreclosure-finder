@@ -1,0 +1,22 @@
+# Secrets
+.env
+.env.*
+!.env.example
+
+# Everything below holds real people's names, addresses, and phone numbers. Never commit it.
+data/raw/*
+data/pa/*
+data/ccis/*
+data/probate/*
+data/skiptrace/*
+data/*.json
+!data/estate_research.example.json
+output/*
+!**/.gitkeep
+
+__pycache__/
+*.pyc
+
+# Per-user setup (created by onboarding)
+config/county.json
+config/profile.json
